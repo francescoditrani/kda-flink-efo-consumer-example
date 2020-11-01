@@ -1,0 +1,21 @@
+[
+  {
+    "PropertyGroupId": "ProducerConfigProperties",
+    "PropertyMap": {
+      "aws.region": "eu-central-1",
+      "AggregationEnabled": "true",
+      "flink.stream.output": "kinesis-flink-test-sink"
+    }
+  },
+  {
+    "PropertyGroupId": "ConsumerConfigProperties",
+    "PropertyMap": {
+      "aws.region": "eu-central-1",
+      "flink.stream.initpos": "LATEST",
+      "flink.stream.input": "kinesis-flink-test-source",
+      "flink.stream.recordpublisher": "EFO",
+      "flink.stream.efo.registration": "EAGER",
+      "flink.stream.efo.consumername": "kda-flink-efo-consumer"
+    }
+  }
+]
