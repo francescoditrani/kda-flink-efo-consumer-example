@@ -1,13 +1,10 @@
-ThisBuild / resolvers ++= Seq(
-  "Apache Development Snapshot Repository" at "https://repository.apache.org/content/repositories/snapshots/",
-  Resolver.mavenLocal
-)
-
 name := "kda-flink-efo-consumer"
+
+organization := "example"
 
 version := "0.1"
 
-scalaVersion := "2.11.12"
+ThisBuild / scalaVersion := "2.11.12"
 
 val flinkVersion = "1.8.2"
 
@@ -28,16 +25,16 @@ scalacOptions += "-target:jvm-1.8"
 
 enablePlugins(ProtobufPlugin)
 
-lazy val flinkStream = (project in file("."))
+lazy val flinkEfoConsumer = (project in file("."))
   .settings(
     libraryDependencies := commonDependencies,
-    assembly / mainClass := Some("org.ree.StreamPredictionJob")
+    assembly / mainClass := Some("example.KinesisStreamJob")
   )
 
 
-lazy val flinkStreamLocal: Project =
+lazy val flinkEfoConsumerLocal: Project =
   project
-    .in(file("flinkStreamLocal"))
+    .in(file("flinkEfoConsumer"))
     .dependsOn(RootProject(file(".")))
     .settings(
       Compile / run / mainClass := Some("example.KinesisStreamJob"),
@@ -48,6 +45,9 @@ lazy val flinkStreamLocal: Project =
         }
       }
     )
+
+Compile / run / fork := true
+Global / cancelable := true
 
 assembly / assemblyOption := (assembly / assemblyOption).value.copy(includeScala = false)
 
