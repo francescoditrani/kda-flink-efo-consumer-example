@@ -11,26 +11,29 @@ import software.amazon.kinesis.connectors.flink.{FlinkKinesisConsumer, FlinkKine
 
 object KinesisStreamJob extends LazyLogging {
 
-  logger.info("Starting Flink Job..")
+  def main(args: Array[String]): Unit = {
 
-  val defaultPerson: Person = Person.getDefaultInstance
+    logger.info("Starting Flink Job..")
 
-  def kinesisConsumer: FlinkKinesisConsumer[Person] =
-    new FlinkKinesisConsumer[Person](
-      flinkInputStream,
-      new ProtoDeserializer[Person](defaultPerson),
-      consumerProperties
-    )
+    val defaultPerson: Person = Person.getDefaultInstance
 
-  def kinesisProducer: FlinkKinesisProducer[Person] =
-    new FlinkKinesisProducer[Person](new ProtoSerializer[Person](), producerProperties)
+    def kinesisConsumer: FlinkKinesisConsumer[Person] =
+      new FlinkKinesisConsumer[Person](
+        flinkInputStream,
+        new ProtoDeserializer[Person](defaultPerson),
+        consumerProperties
+      )
 
-  val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
+    def kinesisProducer: FlinkKinesisProducer[Person] =
+      new FlinkKinesisProducer[Person](new ProtoSerializer[Person](), producerProperties)
 
-  env.registerTypeWithKryoSerializer(classOf[Person], classOf[ProtobufSerializer])
+    val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
 
-  env
-    .addSource(kinesisConsumer)
-    .addSink(kinesisProducer)
+    env.registerTypeWithKryoSerializer(classOf[Person], classOf[ProtobufSerializer])
 
+    env
+      .addSource(kinesisConsumer)
+      .addSink(kinesisProducer)
+
+  }
 }
