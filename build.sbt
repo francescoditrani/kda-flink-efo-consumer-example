@@ -12,8 +12,7 @@ val commonDependencies = Seq(
   "org.apache.flink" %% "flink-scala" % flinkVersion % "provided",
   "org.apache.flink" %% "flink-streaming-scala" % flinkVersion % "provided",
   "com.amazonaws" % "aws-kinesisanalytics-runtime" % "1.1.0",
-  "software.amazon.kinesis" % "amazon-kinesis-connector-flink" % "1.0.1"
-    exclude("com.fasterxml.jackson.core", "jackson-databind") exclude("com.google.guava", "guava"),
+  "software.amazon.kinesis" % "amazon-kinesis-connector-flink" % "1.0.1" exclude("com.google.guava", "guava"),
   "com.google.guava" % "guava" % "18.0",
   "com.twitter" % "chill-protobuf" % "0.7.6" exclude("com.esotericsoftware.kryo", "kyro"),
   "com.google.protobuf" % "protobuf-java" % "3.12.2",
