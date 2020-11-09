@@ -61,7 +61,7 @@ The [AWS documentation](https://docs.aws.amazon.com/kinesisanalytics/latest/java
 
 The `flink-scala` and `flink-streaming-scala` libraries need to be marked as "provided"; this means that, if we run the project locally, we are not going to find their classes in the classpath.
 
-To have this library loaded locally, run:
+To have these libraries loaded locally, run:
 
 ```
 sbt clean  "project flinkEfoConsumerLocal" run
