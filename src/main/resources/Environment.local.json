@@ -17,5 +17,11 @@
       "flink.stream.efo.registration": "EAGER",
       "flink.stream.efo.consumername": "kda-flink-efo-consumer"
     }
+  },
+  {
+    "PropertyGroupId": "ExampleCustomConfigProperties",
+    "PropertyMap": {
+      "example.custom.key": "example-custom-key"
+    }
   }
 ]
