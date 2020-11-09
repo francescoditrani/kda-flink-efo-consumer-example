@@ -12,8 +12,8 @@ import scala.collection.JavaConversions._
 import scala.util.Try
 
 /**
- * Loads Environment properties from Kinesis Analytics Runtime, with `Environment.local.json` as a fallback.
- */
+  * Loads Environment properties from Kinesis Analytics Runtime, with `Environment.local.json` as a fallback.
+  */
 object EnvironmentLoader extends LazyLogging {
 
   lazy val properties: util.Map[String, Properties] = load()
